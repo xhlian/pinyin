@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+		<title>拼音</title>
+	</head>
+	<style>
+		div, textarea, textarea:focus {
+			color: #00FF00;
+			padding: 5px;
+			background: #000000;
+			margin: 20px 20px;
+			min-height: 100px;
+			width: 500px;
+			cursor: text;
+		}
+		textarea, textarea:focus {
+			border: 1px solid #000;
+			margin: 20px 0;
+			width: 490px;
+			overflow: auto;
+		}
+	</style>
+	<body>
+		<div>
+			全拼(getFullChars)： 			<pre id="fullChars"></pre>
+			首字母(getCamelChars): 			<pre id="camelChars"></pre>
+			请输入要转换的汉字：
+ 			<textarea cols="50" rows="5">
+			</textarea>
+		</div>
+		
+		<script src="http://libs.baidu.com/jquery/1.7.2/jquery.js"></script>
+		<script src="pinyin.js"></script>
+		<script>
+			$(function($) {
+				var fullCharsDiv = $("#fullChars"), camelCharsDiv = $("#camelChars");
+				$("textarea").on('keyup change focus', function() {
+					var val = $(this).val();
+	
+					var fullChars = Pinyin.getFullChars(val);
+					fullCharsDiv.html(fullChars);
+	
+					var camelChars = Pinyin.getCamelChars(val);
+					camelCharsDiv.html(camelChars);
+	
+				}).focus();
+			});
+		</script>
+	</body>
+</html>
